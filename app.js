@@ -5,8 +5,23 @@ var app = express();
 
 // home page
 app.get("/", function(req, res){
-	res.send("welcome");
+	res.render("home.ejs");
+	//res.send("welcome to my cookbook");
 });
+//<%=%> ADDS text to the html
+//<% %>
+app.get("/posts", function(req, res) {
+    var posts = [
+    	{title: "ziggy", author: "michael"},
+    	{title: "is", author: "michael"},
+    	{title: "best", author: "michael"}
+    ];
+    res.render("posts.ejs", {posts: posts});
+})
+app.get("/:dog", function(req, res) {
+    var text = req.params.dog;
+    res.render("love.ejs", {dogName: text});
+})
 //using route variables
 app.get("/culture/:foodName/:iterations", function(req, res){
 	console.log(req.params.foodName);
@@ -26,4 +41,6 @@ app.get("*", function(req, res){
 
 
 //start server
-app.listen(process.env.PORT, process.env.IP);
+app.listen(process.env.PORT, process.env.IP, function(){
+	console.log("server is running");
+});
