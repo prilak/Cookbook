@@ -1,0 +1,11 @@
+<% include partials/header %>
+    <% meals.forEach(function(meal){ %>
+            <%= meal %>
+    <% });%>
+    <% %>
+    
+    <form action="/cookbook/add" method="POST">
+        <input name="newMeal" type="text" placeholder="dank placeholder">
+        <button>Submit ME</button>
+    </form>
+<% include partials/footer %>
